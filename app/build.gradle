@@ -43,8 +43,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
     //Retrofit and okhttp3
-    implementation  "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation  "com.squareup.retrofit2:retrofit-converters:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit-converters:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit-adapters:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
@@ -96,7 +96,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     androidTestImplementation 'androidx.test:core-ktx:1.4.0'
-    testImplementation("io.mockk:mockk:1.11.0")
+    androidTestImplementation "io.mockk:mockk:1.11.0"
     testImplementation "io.mockk:mockk:1.11.0"
     testImplementation "io.mockk:mockk-agent-jvm:1.11.0"
 

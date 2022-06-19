@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -18,8 +19,10 @@ import kotlinx.android.synthetic.main.activity_detail_user.*
 import kotlinx.android.synthetic.main.activity_detail_user.loading_progressBar
 
 class DetailUserActivity : AppCompatActivity() {
-    private lateinit var detailUserViewModel: DetailUserViewModel
-    private var userAdapter: UserRepoAdapter? = null
+    @VisibleForTesting
+    lateinit var detailUserViewModel: DetailUserViewModel
+    @VisibleForTesting
+    var userRepoAdapter: UserRepoAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_user)
@@ -49,12 +52,12 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        userAdapter = UserRepoAdapter(arrayListOf(), this, onClick = { url ->
+        userRepoAdapter = UserRepoAdapter(arrayListOf(), this, onClick = { url ->
             openBrowser(url)
         })
         userRepoRV.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = userAdapter
+            adapter = userRepoAdapter
         }
     }
 
@@ -70,12 +73,11 @@ class DetailUserActivity : AppCompatActivity() {
             }
             placeAccountTextview.text = response.location ?: "No Information"
             emailAccountTextview.text = response.email ?: "No Information"
-            Glide.with(this).load(response.avatarUrl).circleCrop().placeholder(R.drawable.ic_sync).into(avatarImageView
-             )
+            Glide.with(this).load(response.avatarUrl).circleCrop().placeholder(R.drawable.ic_sync).into(avatarImageView)
         })
 
         detailUserViewModel.userRepoLiveData.observe(this, Observer { response ->
-            userAdapter?.refreshAdapter(response)
+            userRepoAdapter?.refreshAdapter(response)
             profileView.visibility = View.VISIBLE
             repoAccountTextview.text = response.size.toString()
         })

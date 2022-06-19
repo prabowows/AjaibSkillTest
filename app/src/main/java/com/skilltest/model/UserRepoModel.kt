@@ -96,8 +96,6 @@ data class UserRepoModel(
     var language: String? = null,
     @SerializedName("languages_url")
     var languagesUrl: String? = null,
-    @SerializedName("license")
-    var license: LicenseModel? = null,
     @SerializedName("merges_url")
     var mergesUrl: String? = null,
     @SerializedName("milestones_url")

@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName
 data class UserDetailResponse(
     @SerializedName("avatar_url")
     var avatarUrl: String? = null,
-    @SerializedName("bio")
-    var bio: Any? = null,
     @SerializedName("blog")
     var blog: String? = null,
     @SerializedName("company")

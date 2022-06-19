@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
     private fun observeEmployeeInfo() {
         listUserViewModel.employeeLiveData.observe(this, Observer { response ->
             response?.let { employeeModel ->
-                employeeModel?.let {
+                employeeModel.let {
                     response.items?.let { listData -> userAdapter?.refreshAdapter(listData) }
                 }
             }
